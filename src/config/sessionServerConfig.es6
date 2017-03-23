@@ -1,20 +1,16 @@
-import connectionProvider from "../dataAccess/connectionProvider.es6";
+import {Configuration, ConnectionProvider}   from "microservice-cinema-core";
 import session  from "express-session";
 import mongoStoreFactory  from "connect-mongo";
 import log4js from "log4js";
 
-import {serverSettings}   from "./config";
-
 const log = log4js.getLogger("SESSION-MANAGEMENT-MONGO");
-
 const MongoStore = mongoStoreFactory(session);
-
 
 const sessionManagementConfig = async(app) => {
 
     try {
 
-        const conn = await connectionProvider(serverSettings.mongodbUrl, serverSettings.database)
+        const conn = await ConnectionProvider()
             .then( () => {
 
                 log.debug("conexion successfull");
@@ -23,7 +19,7 @@ const sessionManagementConfig = async(app) => {
                         "dbPromise": conn,
                         "ttl": 60 * 60
                     }),
-                    "secret": serverSettings.session.password,
+                    "secret": Configuration.session.password,
                     "saveUninitialized": true,
                     "resave": false,
                     "cookie": {

@@ -1,7 +1,5 @@
 import log4js from "log4js";
-
-import {getCommentModel} from "./commentModelFactory";
-import {commentSchema} from "./commentValidationSchema";
+import {getCommentModel, commentSchema} from "microservice-cinema-core";
 
 const log = log4js.getLogger("COMMENT-CONTROLLER");
 
