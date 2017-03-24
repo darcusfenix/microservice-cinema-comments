@@ -1,4 +1,4 @@
-# Microservice of comments about movies in a cinema
+# Microservice of comments about movies in a cinema 
 
 
 
@@ -36,7 +36,7 @@ $ docker service create \
 --env-file env \
 darcusfenix/micro-cinema-comments:v1.0.0
 ```
-### How to update a service with new image in docker swarm ?
+### How to update a service with new image in docker swarm and Zero downtime ?
 
 ```
 $ docker service update \
