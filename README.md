@@ -21,17 +21,31 @@ $ docker build -t darcusfenix/micro-cinema-comments:v1.0.0 .
 ### How to run in production ?
 
 ```
-$ docker run -it --name micro-cinema-comments -p 3000:3000 -d darcusfenix/micro-cinema-comments:v1.0.0
+$ docker run -it --name micro-cinema-comments \
+-p 3000:3000 -d \
+darcusfenix/micro-cinema-comments:v1.0.0
 ```
 ### How to create a service in docker swarm ?
 
 ```
-$ docker service create --replicas 5 --name micro-cinema-comments --update-delay 10s --publish 3001:3000 --env-file env darcusfenix/micro-cinema-comments:v1.0.0
+$ docker service create \
+--replicas 5 \
+--name micro-cinema-comments \
+--update-delay 10s \
+--publish 3001:3000 \
+--env-file env \
+darcusfenix/micro-cinema-comments:v1.0.0
 ```
 ### How to update a service with new image in docker swarm ?
 
 ```
-$ docker service create --replicas 5 --name micro-cinema-comments --update-delay 10s --publish 3001:3000 --env-file env darcusfenix/micro-cinema-comments:v1.0.0
+$ docker service create \
+--replicas 5 \
+--name micro-cinema-comments \
+--update-delay 10s \
+--publish 3001:3000 \
+--env-file env \
+darcusfenix/micro-cinema-comments:v1.0.0
 ```
 ### How to follow logs of a container ?
 
