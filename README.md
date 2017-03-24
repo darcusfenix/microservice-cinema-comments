@@ -39,13 +39,9 @@ darcusfenix/micro-cinema-comments:v1.0.0
 ### How to update a service with new image in docker swarm ?
 
 ```
-$ docker service create \
---replicas 5 \
---name micro-cinema-comments \
---update-delay 10s \
---publish 3001:3000 \
---env-file env \
-darcusfenix/micro-cinema-comments:v1.0.0
+$ docker service update \
+--image darcusfenix/micro-cinema-comments:v1.0.1 \
+micro-cinema-comments
 ```
 ### How to follow logs of a container ?
 
