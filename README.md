@@ -1,4 +1,4 @@
-# Microservice of a cinema
+# Microservice of comments about movies in a cinema
 
 
 
