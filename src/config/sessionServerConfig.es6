@@ -1,4 +1,4 @@
-import {Configuration, ConnectionProvider}   from "microservice-cinema-core";
+import {settings, ConnectionProvider}   from "microservice-cinema-core";
 import session  from "express-session";
 import mongoStoreFactory  from "connect-mongo";
 import log4js from "log4js";
@@ -19,7 +19,7 @@ const sessionManagementConfig = async(app) => {
                         "dbPromise": conn,
                         "ttl": 60 * 60
                     }),
-                    "secret": Configuration.session.password,
+                    "secret": settings.session.password,
                     "saveUninitialized": true,
                     "resave": false,
                     "cookie": {
