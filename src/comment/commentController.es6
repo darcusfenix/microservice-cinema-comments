@@ -9,21 +9,21 @@ export const
 
         let query = {};
 
-        if (req.query.title) {
+        if (req.query.movie) {
 
-            query.title = req.query.title;
+            query.movie = req.query.movie;
 
         }
 
-        Comment.find(query, (err, pets) => {
+        Comment.find(query, (err, comments) => {
 
             if (err) {
 
-                res.status(500).send(err);
+                res.status(404).json([]);
 
             } else {
 
-                res.json(pets);
+                res.json(comments);
 
             }
 
