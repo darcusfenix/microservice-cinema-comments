@@ -1,5 +1,6 @@
 import log4js from "log4js";
-import {getCommentModel, commentSchema} from "microservice-cinema-core";
+import {getCommentModel, sendNotificacion, settings} from "microservice-cinema-core";
+import {CommentSchema} from "./commentValidationSchema";
 
 const log = log4js.getLogger("COMMENT-CONTROLLER");
 
@@ -54,7 +55,11 @@ export const
 
         for (const property in req.body) {
 
-            req.comment[property] = req.body[property];
+            if (req.body.hasOwnProperty(property)) {
+
+                req.comment[property] = req.body[property];
+
+            }
 
         }
 
@@ -76,32 +81,47 @@ export const
     post = async(req, res) => {
 
         const Comment = await getCommentModel();
-        req.checkBody(commentSchema);
+
+        req.checkBody(CommentSchema);
 
         const errors = req.validationErrors();
 
         if (errors) {
+
             log.error(errors);
             res.status(401).json(errors);
+
+            return;
         }
 
         let comment = new Comment(req.body);
 
-        comment.save(function (err) {
+        comment.save((err) => {
+
             if (err) {
+
                 log.error(err);
-
                 res.status(500);
-                res.json({message : err.message});
+                res.json(err);
 
-                return;
+            } else {
+
+                sendNotificacion(settings.commentsTopic, comment.id).then((response) => {
+
+
+                }).catch((error) => {
+
+                }).then(() => {
+
+                    res.status(201);
+                    res.send(comment);
+
+                });
             }
 
 
-            res.status(201);
-            res.send(comment);
-
         });
+
 
     },
     preRequestById = async(req, res, next) => {

@@ -4,3 +4,5 @@ MONGODB_DATABASE=admin
 MONGODB_USER=darcusfenix
 MONGODB_PASSWORD=darcusfenix
 EXPRESS_PORT=3000
+ACTIVEMQ_URL=activemq.crisostomo.soy
+ACTIVEMQ_PORT=80
