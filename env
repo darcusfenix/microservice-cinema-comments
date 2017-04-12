@@ -4,5 +4,5 @@ MONGODB_DATABASE=cinema
 MONGODB_USER=darcusfenix
 MONGODB_PASSWORD=darcusfenix
 EXPRESS_PORT=3000
-ACTIVEMQ_URL=activemq.crisostomo.soy
+ACTIVEMQ_URL=tcp://activemq.crisostomo.soy
 ACTIVEMQ_PORT=1883
